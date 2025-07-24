@@ -4,9 +4,16 @@ import javax.swing.*;
 
 public class app {
     public static void main(String[] args) {
-        JFrame game = new JFrame("Puzzle");
-        game.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        JFrame gameJframe = new JFrame("Puzzle");
+        gameJframe.setSize(603,680);
+        gameJframe.setVisible(true);
 
+        JFrame loginFrame = new JFrame();
+        loginFrame.setSize(488,430);
+        loginFrame.setVisible(true);
 
+        JFrame registerFrame = new JFrame();
+        registerFrame.setSize(488,500);
+        registerFrame.setVisible(true);
     }
 }
