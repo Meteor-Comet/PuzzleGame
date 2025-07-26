@@ -5,14 +5,25 @@ import javax.swing.*;
 public class GameFrame extends JFrame {
     public GameFrame()
     {
+        initJFrame();
+
+        //初始化菜单
+        initJMenuBar();
+
+
+        this.setVisible(true);
+    }
+
+    private void initJFrame() {
         this.setTitle("拼图游戏");
         this.setSize(603,680);
 
         this.setAlwaysOnTop(true);
         this.setLocationRelativeTo(null);
-        //this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    }
 
-        //初始化菜单
+    private void initJMenuBar() {
         JMenuBar jmenuBar = new JMenuBar();
         JMenu functionJMenu = new JMenu("功能");
         JMenu aboutJMenu = new JMenu("关于");
@@ -33,8 +44,5 @@ public class GameFrame extends JFrame {
         jmenuBar.add(aboutJMenu);
 
         this.setJMenuBar(jmenuBar);
-
-
-        this.setVisible(true);
     }
 }
