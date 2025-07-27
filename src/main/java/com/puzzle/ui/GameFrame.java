@@ -33,12 +33,14 @@ public class GameFrame extends JFrame implements KeyListener, ActionListener {
         {13,14,15,16}
     };
     String path = "src\\main\\resources\\image\\animal\\animal3\\";
+    String currentTheme = "动物3";
 
     int step = 0;
     JMenuItem replayItem = new JMenuItem("重新开始");
     JMenuItem reLoginItem = new JMenuItem("重新登录");
     JMenuItem closeItem = new JMenuItem("关闭游戏");
     JMenuItem accountItem = new JMenuItem("公众号");
+    JMenuItem themeItem = new JMenuItem("切换主题");
     private void initData() {
         int[] tempArr = {0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15};
         Random random = new Random();
@@ -116,6 +118,7 @@ public class GameFrame extends JFrame implements KeyListener, ActionListener {
         functionJMenu.add(replayItem);
         functionJMenu.add(reLoginItem);
         functionJMenu.add(closeItem);
+        functionJMenu.add(themeItem);
 
         aboutJMenu.add(accountItem);
         //给条目绑定事件
@@ -123,6 +126,7 @@ public class GameFrame extends JFrame implements KeyListener, ActionListener {
         reLoginItem.addActionListener(this);
         closeItem.addActionListener(this);
         accountItem.addActionListener(this);
+        themeItem.addActionListener(this);
 
         jmenuBar.add(functionJMenu);
         jmenuBar.add(aboutJMenu);
@@ -251,7 +255,23 @@ public class GameFrame extends JFrame implements KeyListener, ActionListener {
             JOptionPane.showMessageDialog(this, "关闭游戏");
             System.exit(0);
         }
-        if(obj == accountItem){
+        if(obj == themeItem){
+            // 打开主题选择对话框
+            ThemeDialog themeDialog = new ThemeDialog(this);
+            themeDialog.setVisible(true);
+            
+            if(themeDialog.isConfirmed()){
+                String newTheme = themeDialog.getSelectedTheme();
+                if(!newTheme.equals(currentTheme)){
+                    currentTheme = newTheme;
+                    path = ThemeManager.getThemePath(newTheme);
+                    step = 0;
+                    initData();
+                    initImage();
+                    JOptionPane.showMessageDialog(this, "主题已切换到：" + newTheme);
+                }
+            }
+        }else if(obj == accountItem){
             ImageIcon icon = new ImageIcon("src\\main\\resources\\image\\about\\wx.jpg");
             //JOptionPane.showMessageDialog(this, "", "公众号", JOptionPane.INFORMATION_MESSAGE, icon);
             JDialog jDialog = new JDialog();
