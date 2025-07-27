@@ -56,6 +56,17 @@ javac -cp "src/main/java" src/main/java/APP.java src/main/java/com/puzzle/ui/*.j
 java -cp "src/main/java" APP
 ```
 
+### 打包成可执行文件
+```bash
+# 生成JAR文件（推荐）
+build-simple.bat
+
+# 生成EXE文件（需要Launch4j）
+build.bat
+```
+
+详细打包说明请参考 [PACKAGING.md](PACKAGING.md)
+
 ### 测试不同界面
 ```bash
 # 测试登录界面

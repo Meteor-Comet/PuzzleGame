@@ -25,6 +25,11 @@ public class LoginFrame extends JFrame implements ActionListener, MouseListener 
     // 显示密码按钮
     JButton showPasswordButton = new JButton();
     
+    // 标签组件
+    JLabel usernameLabel;
+    JLabel passwordLabel;
+    JLabel codeLabelTitle;
+    
     // 验证码
     String code = "";
     // 是否显示密码
@@ -52,7 +57,7 @@ public class LoginFrame extends JFrame implements ActionListener, MouseListener 
 
     private void initView() {
         // 用户名标签
-        JLabel usernameLabel = new JLabel(new ImageIcon("src\\main\\resources\\image\\login\\用户名.png"));
+        usernameLabel = new JLabel(ResourceLoader.createImageIcon("login/用户名.png"));
         usernameLabel.setBounds(100, 108, 70, 30);
         this.getContentPane().add(usernameLabel);
 
@@ -63,7 +68,7 @@ public class LoginFrame extends JFrame implements ActionListener, MouseListener 
         this.getContentPane().add(usernameField);
 
         // 密码标签
-        JLabel passwordLabel = new JLabel(new ImageIcon("src\\main\\resources\\image\\login\\密码.png"));
+        passwordLabel = new JLabel(ResourceLoader.createImageIcon("login/密码.png"));
         passwordLabel.setBounds(100, 145, 70, 30);
         this.getContentPane().add(passwordLabel);
 
@@ -74,7 +79,7 @@ public class LoginFrame extends JFrame implements ActionListener, MouseListener 
         this.getContentPane().add(passwordField);
 
         // 验证码标签
-        JLabel codeLabelTitle = new JLabel(new ImageIcon("src\\main\\resources\\image\\login\\验证码.png"));
+        codeLabelTitle = new JLabel(ResourceLoader.createImageIcon("login/验证码.png"));
         codeLabelTitle.setBounds(100, 182, 70, 30);
         this.getContentPane().add(codeLabelTitle);
 
@@ -95,7 +100,7 @@ public class LoginFrame extends JFrame implements ActionListener, MouseListener 
 
         // 显示密码按钮
         showPasswordButton.setBounds(375, 145, 30, 30);
-        showPasswordButton.setIcon(new ImageIcon("src\\main\\resources\\image\\login\\显示密码.png"));
+        showPasswordButton.setIcon(ResourceLoader.createImageIcon("login/显示密码.png"));
         showPasswordButton.setBorder(null);
         showPasswordButton.setContentAreaFilled(false);
         showPasswordButton.addActionListener(this);
@@ -103,7 +108,7 @@ public class LoginFrame extends JFrame implements ActionListener, MouseListener 
 
         // 登录按钮
         loginButton.setBounds(123, 250, 128, 47);
-        loginButton.setIcon(new ImageIcon("src\\main\\resources\\image\\login\\登录按钮.png"));
+        loginButton.setIcon(ResourceLoader.createImageIcon("login/登录按钮.png"));
         loginButton.setBorder(null);
         loginButton.setContentAreaFilled(false);
         loginButton.addActionListener(this);
@@ -111,14 +116,14 @@ public class LoginFrame extends JFrame implements ActionListener, MouseListener 
 
         // 注册按钮
         registerButton.setBounds(256, 250, 128, 47);
-        registerButton.setIcon(new ImageIcon("src\\main\\resources\\image\\login\\注册按钮.png"));
+        registerButton.setIcon(ResourceLoader.createImageIcon("login/注册按钮.png"));
         registerButton.setBorder(null);
         registerButton.setContentAreaFilled(false);
         registerButton.addActionListener(this);
         this.getContentPane().add(registerButton);
 
         // 添加背景图片 - 最后添加，确保在最底层
-        JLabel background = new JLabel(new ImageIcon("src\\main\\resources\\image\\login\\background.png"));
+        JLabel background = new JLabel(ResourceLoader.createImageIcon("login/background.png"));
         background.setBounds(0, 0, 470, 390);
         this.getContentPane().add(background);
     }
@@ -180,10 +185,10 @@ public class LoginFrame extends JFrame implements ActionListener, MouseListener 
             // 切换密码显示
             if (isShowPassword) {
                 passwordField.setEchoChar('*');
-                showPasswordButton.setIcon(new ImageIcon("src\\main\\resources\\image\\login\\显示密码.png"));
+                showPasswordButton.setIcon(ResourceLoader.createImageIcon("login/显示密码.png"));
             } else {
                 passwordField.setEchoChar((char) 0);
-                showPasswordButton.setIcon(new ImageIcon("src\\main\\resources\\image\\login\\显示密码按下.png"));
+                showPasswordButton.setIcon(ResourceLoader.createImageIcon("login/显示密码按下.png"));
             }
             isShowPassword = !isShowPassword;
         }

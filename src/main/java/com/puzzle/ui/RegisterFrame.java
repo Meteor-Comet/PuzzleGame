@@ -38,7 +38,7 @@ public class RegisterFrame extends JFrame implements ActionListener {
 
     private void initView() {
         // 用户名标签
-        JLabel usernameLabel = new JLabel(new ImageIcon("src\\main\\resources\\image\\register\\注册用户名.png"));
+        JLabel usernameLabel = new JLabel(ResourceLoader.createImageIcon("register/注册用户名.png"));
         usernameLabel.setBounds(100, 108, 70, 30);
         this.getContentPane().add(usernameLabel);
 
@@ -49,7 +49,7 @@ public class RegisterFrame extends JFrame implements ActionListener {
         this.getContentPane().add(usernameField);
 
         // 密码标签
-        JLabel passwordLabel = new JLabel(new ImageIcon("src\\main\\resources\\image\\register\\注册密码.png"));
+        JLabel passwordLabel = new JLabel(ResourceLoader.createImageIcon("register/注册密码.png"));
         passwordLabel.setBounds(100, 145, 70, 30);
         this.getContentPane().add(passwordLabel);
 
@@ -60,7 +60,7 @@ public class RegisterFrame extends JFrame implements ActionListener {
         this.getContentPane().add(passwordField);
 
         // 确认密码标签
-        JLabel confirmPasswordLabel = new JLabel(new ImageIcon("src\\main\\resources\\image\\register\\再次输入密码.png"));
+        JLabel confirmPasswordLabel = new JLabel(ResourceLoader.createImageIcon("register/再次输入密码.png"));
         confirmPasswordLabel.setBounds(100, 182, 70, 30);
         this.getContentPane().add(confirmPasswordLabel);
 
@@ -72,7 +72,7 @@ public class RegisterFrame extends JFrame implements ActionListener {
 
         // 注册按钮
         registerButton.setBounds(123, 250, 128, 47);
-        registerButton.setIcon(new ImageIcon("src\\main\\resources\\image\\register\\注册按钮.png"));
+        registerButton.setIcon(ResourceLoader.createImageIcon("register/注册按钮.png"));
         registerButton.setBorder(null);
         registerButton.setContentAreaFilled(false);
         registerButton.addActionListener(this);
@@ -80,14 +80,14 @@ public class RegisterFrame extends JFrame implements ActionListener {
 
         // 重置按钮
         resetButton.setBounds(256, 250, 128, 47);
-        resetButton.setIcon(new ImageIcon("src\\main\\resources\\image\\register\\重置按钮.png"));
+        resetButton.setIcon(ResourceLoader.createImageIcon("register/重置按钮.png"));
         resetButton.setBorder(null);
         resetButton.setContentAreaFilled(false);
         resetButton.addActionListener(this);
         this.getContentPane().add(resetButton);
 
         // 添加背景图片 - 最后添加，确保在最底层
-        JLabel background = new JLabel(new ImageIcon("src\\main\\resources\\image\\register\\background.png"));
+        JLabel background = new JLabel(ResourceLoader.createImageIcon("register/background.png"));
         background.setBounds(0, 0, 470, 390);
         this.getContentPane().add(background);
     }

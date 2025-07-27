@@ -32,7 +32,7 @@ public class GameFrame extends JFrame implements KeyListener, ActionListener {
         {9,10,11,12},
         {13,14,15,16}
     };
-    String path = "src\\main\\resources\\image\\animal\\animal3\\";
+    String path = "animal/animal3/";
     String currentTheme = "动物3";
 
     int step = 0;
@@ -64,7 +64,7 @@ public class GameFrame extends JFrame implements KeyListener, ActionListener {
         this.getContentPane().removeAll();
 
         if(victory()){
-            JLabel winJLabel = new JLabel(new ImageIcon("src\\main\\resources\\image\\win.png"));
+            JLabel winJLabel = new JLabel(ResourceLoader.createImageIcon("win.png"));
             winJLabel.setBounds(203, 283, 197, 73);
             this.getContentPane().add(winJLabel);
         }
@@ -79,7 +79,8 @@ public class GameFrame extends JFrame implements KeyListener, ActionListener {
             int col = (i - 1) % 4;
             
             // 创建图片标签
-            ImageIcon icon = new ImageIcon(path + data[row][col] + ".jpg");
+            String imageName = data[row][col] + ".jpg";
+            ImageIcon icon = ResourceLoader.createImageIcon(path + imageName);
             JLabel jLabel = new JLabel(icon);
             
             // 设置位置和大小
@@ -90,7 +91,7 @@ public class GameFrame extends JFrame implements KeyListener, ActionListener {
             this.getContentPane().add(jLabel);
         }
         //添加背景图片
-        ImageIcon bg = new ImageIcon("src\\main\\resources\\image\\background.png");
+        ImageIcon bg = ResourceLoader.createImageIcon("background.png");
         JLabel background = new JLabel(bg);
         background.setBounds(40,40,508,560);
         this.getContentPane().add(background);
@@ -148,12 +149,12 @@ public class GameFrame extends JFrame implements KeyListener, ActionListener {
         if (code==65) {
             this.getContentPane().removeAll();
             // 显示完整图片
-            JLabel all = new JLabel(new ImageIcon(path+"all.jpg"));
+            JLabel all = new JLabel(ResourceLoader.createImageIcon(path + "all.jpg"));
             all.setBounds(83, 134, 420, 420);
             this.getContentPane().add(all);
 
             // 添加背景图片
-            ImageIcon bg = new ImageIcon("src\\main\\resources\\image\\background.png");
+            ImageIcon bg = ResourceLoader.createImageIcon("background.png");
             JLabel background = new JLabel(bg);
             background.setBounds(40,40,508,560);
             this.getContentPane().add(background);
@@ -272,7 +273,7 @@ public class GameFrame extends JFrame implements KeyListener, ActionListener {
                 }
             }
         }else if(obj == accountItem){
-            ImageIcon icon = new ImageIcon("src\\main\\resources\\image\\about\\wx.jpg");
+            ImageIcon icon = ResourceLoader.createImageIcon("about/wx.jpg");
             //JOptionPane.showMessageDialog(this, "", "公众号", JOptionPane.INFORMATION_MESSAGE, icon);
             JDialog jDialog = new JDialog();
             JLabel jLabel = new JLabel(icon);

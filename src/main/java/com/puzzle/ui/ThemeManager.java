@@ -28,17 +28,17 @@ public class ThemeManager {
     static {
         // 动物主题
         for (int i = 1; i <= 8; i++) {
-            themePaths.put("动物" + i, "src\\main\\resources\\image\\animal\\animal" + i + "\\");
+            themePaths.put("动物" + i, "animal/animal" + i + "/");
         }
         
         // 女孩主题
         for (int i = 1; i <= 13; i++) {
-            themePaths.put("女孩" + i, "src\\main\\resources\\image\\girl\\girl" + i + "\\");
+            themePaths.put("女孩" + i, "girl/girl" + i + "/");
         }
         
         // 运动主题
         for (int i = 1; i <= 10; i++) {
-            themePaths.put("运动" + i, "src\\main\\resources\\image\\sport\\sport" + i + "\\");
+            themePaths.put("运动" + i, "sport/sport" + i + "/");
         }
     }
     
@@ -48,7 +48,7 @@ public class ThemeManager {
      * @return 主题路径
      */
     public static String getThemePath(String themeName) {
-        return themePaths.getOrDefault(themeName, "src\\main\\resources\\image\\animal\\animal3\\");
+        return themePaths.getOrDefault(themeName, "animal/animal3/");
     }
     
     /**
