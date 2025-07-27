@@ -1,9 +1,14 @@
 package com.puzzle.ui;
 
 import javax.swing.*;
+import javax.swing.border.BevelBorder;
+import java.awt.*;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.util.Random;
 
-public class GameFrame extends JFrame {
+public class GameFrame extends JFrame implements KeyListener {
+    int[][] data =new int[4][4];
     public GameFrame()
     {
         //初始化界面
@@ -13,12 +18,13 @@ public class GameFrame extends JFrame {
         //初始化数据
         initData();
         //初始化图片
-        initImage(initData());
+        initImage();
 
         this.setVisible(true);
     }
-
-    private int[][] initData() {
+    int x = 0;
+    int y = 0;
+    private void initData() {
         int[] tempArr = {0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15};
         Random random = new Random();
         for(int i = 0; i < tempArr.length; i++){
@@ -27,14 +33,19 @@ public class GameFrame extends JFrame {
             tempArr[i] = tempArr[randomIndex];
             tempArr[randomIndex] = temp;
         }
-        int[][] tempArr2 = new int[4][4];
         for(int i = 0; i < tempArr.length; i++){
-            tempArr2[i / 4][i % 4] = tempArr[i];
+            data[i / 4][i % 4] = tempArr[i];
+            if(tempArr[i] == 0){
+                x = i / 4;
+                y = i % 4;
+            }
         }
-        return tempArr2;
     }
 
-    private void initImage(int[][] ints) {
+    private void initImage() {
+        //清空
+        this.getContentPane().removeAll();
+
         // 使用循环添加拼图图片
         for (int i = 1; i <= 16; i++) {
             // 计算行和列
@@ -42,15 +53,23 @@ public class GameFrame extends JFrame {
             int col = (i - 1) % 4;
             
             // 创建图片标签
-            ImageIcon icon = new ImageIcon("F:\\JavaProjects\\PuzzleGame\\src\\main\\resources\\image\\animal\\animal3\\" + ints[row][col] + ".jpg");
+            ImageIcon icon = new ImageIcon("src\\main\\resources\\image\\animal\\animal3\\" + data[row][col] + ".jpg");
             JLabel jLabel = new JLabel(icon);
             
             // 设置位置和大小
-            jLabel.setBounds(col * 105, row * 105, 105, 105);
-            
+            jLabel.setBounds(col * 105+ 83, row * 105 +134, 105, 105);
+            //给图片添加边框
+            jLabel.setBorder(new BevelBorder(1));
             // 添加到窗体中
             this.getContentPane().add(jLabel);
         }
+        //添加背景图片
+        ImageIcon bg = new ImageIcon("src\\main\\resources\\image\\background.png");
+        JLabel background = new JLabel(bg);
+        background.setBounds(40,40,508,560);
+        this.getContentPane().add(background);
+        //刷新页面
+        this.getContentPane().repaint();
     }
 
     private void initJFrame() {
@@ -62,6 +81,7 @@ public class GameFrame extends JFrame {
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         //取消居中默认放置
         this.setLayout(null);
+        this.addKeyListener(this);
     }
 
     private void initJMenuBar() {
@@ -85,5 +105,58 @@ public class GameFrame extends JFrame {
         jmenuBar.add(aboutJMenu);
 
         this.setJMenuBar(jmenuBar);
+    }
+
+    @Override
+    public void keyTyped(KeyEvent e) {
+
+    }
+
+    @Override
+    public void keyPressed(KeyEvent e) {
+
+    }
+
+    @Override
+    public void keyReleased(KeyEvent e) {
+        //根据用户按下的按键(上下左右)调整图片位置
+        int keyCode = e.getKeyCode();
+        if(keyCode == 37){
+            //按下的是左键
+            if(y == 3){
+                return;
+            }
+            data[x][y] = data[x][y+1];
+            data[x][y+1] = 0;
+            y++;
+            this.initImage();
+        }else if(keyCode == 38){
+            //按下的是上键
+            if(x == 3){
+                return;
+            }
+            data[x][y] = data[x+1][y];
+            data[x+1][y] = 0;
+            x++;
+            this.initImage();
+        }else if(keyCode == 39){
+            //按下的是右键
+            if(y == 0){
+                return;
+            }
+            data[x][y] = data[x][y-1];
+            data[x][y-1] = 0;
+            y--;
+            this.initImage();
+        }else if(keyCode == 40){
+            //按下的是下键
+            if(x == 0){
+                return;
+            }
+            data[x][y] = data[x-1][y];
+            data[x-1][y] = 0;
+            x--;
+            this.initImage();
+        }
     }
 }
